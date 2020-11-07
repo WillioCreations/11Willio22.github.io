@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<title>Line Reader!</title>
+
+</head>
+
+<body>
+
+<h1>Line Reader!</h1>
+
+<p id="info">This can read your lines for you!</p>
+
+<div id="inputdiv">
+
+<textarea id="input">Input your text here!</textarea>
+<textarea id="output">Output</textarea>
+
+<button name="Read" id="Read" type="button" onclick="read()" width="100%" height="100%">Read</button>
+
+</div>
+
+<script>
+
+
+var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+function read() {
+	
+	setup()
+}
+
+function setup() {
+	text = document.getElementById("input").value
+	newText = ""
+	textChars = text.split('')
+	for (let j = 0; j < text.length; j++) {
+		if (chars[j] == ' ') {
+			check = 0
+			while (upper.includes(chars[j + check]) {
+				if () {
+				
+				}
+			}
+		}
+	}
+	let lines = newText.split("\n")
+	document.getElementById("output").value = ""
+	elements = []
+	
+	for (let i = 0; i < lines.length; i++) {
+		chars = lines[i].split('')
+		name = ""
+		line = ""
+		element = []
+		foundName = false
+		
+		perenthesis = false
+		for (let j = 0; j < lines[i].length; j++) {
+			if (chars[j] == '(' || chars[j] == ')') {
+				perenthesis = !perenthesis
+			}
+			if (!perenthesis) {
+				if (foundName == false) {
+					if (upper.includes(chars[j])) {
+						name += chars[j]
+					}
+					if (chars[j] == '.') {
+						if (upper.includes(chars[j + 1])) {
+							if (!upper.includes(chars[j + 2]) && chars[j + 2] != '.') {
+								if (!upper.includes(chars[j + 2]) && chars[j + 2] != '.') {
+									elements.push(name)
+									foundName = true
+								}
+							}
+						}
+					}
+				} else {
+					line += chars[j]
+				}
+			}
+		}
+		element.push(line)
+		elements.push(element)
+		document.getElementById("output").value += lines[i]
+		
+	}
+	
+}
+
+var synth = window.speechSynthesis
+var text = ""
+var elements = []
+
+</script>
+
+<style>
+
+#inputdiv {
+width:100%;
+height:100%;E2E2E2
+}
+
+#input {
+width:100%;
+height:50%;
+}
+
+#output {
+width:100%;
+height:50%;
+}
+
+</style>
+
+</body>
+
+</html>

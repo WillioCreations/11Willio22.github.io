@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<title>Logic Circuit Designer v1</title>
-	<body onload="onResize()" onresize="onResize()">
+	<body>
 	
 
     	<link rel="stylesheet" type="text/css" href="styles.css"/>
@@ -9,9 +9,8 @@
     	<h1>Logic Circuit Designer v1</h1> 
     	<p>Welcome to the <b>Logic Circuit Designer v1</b>!</p>
 		<p id="mousePos">X=0 Y=0</p>
-		<div id="cvdiv">
-			<canvas id="cv"/>
-		</div>
+		
+		<canvas id="cv" width=720 height=480></canvas>
 		
 		<script src="logicdiagramjs.js"></script>
 		
