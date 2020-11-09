@@ -131,7 +131,7 @@ addTile("flower2")
 addTile("puddle")
 
 var img_player = new Image()
-img_player.src = "player.png"
+img_player.src = "player.png" 
 
 var canvas = document.getElementById("canvas")
 var width = 1280
