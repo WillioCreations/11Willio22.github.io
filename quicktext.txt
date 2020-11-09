@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 class Tile {
 	
 	constructor(imgSrc) {
@@ -169,3 +171,5 @@ window.setInterval(update,100)
 
 
 
+
+</html>

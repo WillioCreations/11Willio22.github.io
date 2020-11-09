@@ -1,12 +1,38 @@
 <html>
 <body>
-
+<meta><title>Robot's Adventure</title></meta>
 
 
 
 <canvas id="canvas"></canvas>
-<input id="command" onkeyup="input(event)" type="text"/>
+<p id="playerPos">(0,0)</p>
+<textarea id="command" type="text"></textarea>
+<input id="run" type="button" onclick="run()" value="Run"></input>
 <link rel="stylesheet" href="codinggame-styles.css"></link>
-<script src="codinggame.js"></script
+<script src="codinggame.js"></script>
+<div id="expdiv" width="200px" height="100px">
+<p id="explanation">	
+Welcome to <em>Coding Game</em>!<br>
+Instructions:<br>	
+ &nbsp;<em>You are a lone robot on this planet. Your quest is to find the supply drop sent from your home planet by navigating the troublesome terrain.</em><br>
+ 
+ &nbsp;Use the following commands and structures to complete the tasks:<br>
+ &nbsp;&nbsp;Commands:<br>
+ &nbsp;&nbsp;&nbsp;-up(amount)<br>
+ &nbsp;&nbsp;&nbsp;-down(amount)<br>
+ &nbsp;&nbsp;&nbsp;-right(amount)<br>
+ &nbsp;&nbsp;&nbsp;-left(amount)<br>
+ <br>
+ &nbsp;&nbsp;&nbsp;-function  &lt;code&gt;<br>
+ &nbsp;&nbsp;Defining a function:<br>
+ &nbsp;&nbsp;&nbsp;<em>After "function ", write your lines of code separated by a ';' inside curly brackets <br>
+ &nbsp;&nbsp;&nbsp;To write a function 'test' that will move up 3 and right 4, write: <br></em>
+ &nbsp;&nbsp;&nbsp;&nbsp;<font face="Courier New">function test {<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;up(3);<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;right(4);<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;}</font><br>
+ 
+</p>
+ 
 </body>
 </html>
