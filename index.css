@@ -1,0 +1,38 @@
+h1 {
+	font:70px Impact;
+	text-align:center;
+	letter-spacing:5px
+}
+
+#forecasterbutton {
+	border:none;
+	color:#F1F1F1;
+	background:#A9A9F9;
+	font:40px Courier New;
+	text-align:center;
+	
+	border-radius:10px;
+	
+	padding:100px;
+	width:100%;
+	text-decoration:none;
+	
+	
+}
+
+#div1 {
+	border:none;
+	background:#232327;
+	padding:10px;
+	border-radius:10px
+}
+
+#Title {
+color:#F2F2F2;
+font:30px Impact;
+padding:0px;
+margin:0px 0px 10px 0px;
+text-align:center;
+}
+
+ 

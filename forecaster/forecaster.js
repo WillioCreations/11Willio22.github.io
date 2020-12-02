@@ -27,7 +27,7 @@ var boxY = (height / 2) - (boxHeight / 2)
 
 function draw() {
 
-	ctx.fillStyle = bgColor
+  ctx.fillStyle = bgColor
   ctx.fillRect(0,0,width,height)
   
   ctx.font = "11px Courier New"
