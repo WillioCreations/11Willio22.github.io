@@ -4,7 +4,10 @@
 	margin: 10px 0px 10px 0px;
 }
 
-
+#canvas {
+	width:640px;
+	height:360px;
+}
 
 h1{
 color:#F1F1F1;
