@@ -47,7 +47,8 @@ function draw() {
 
 function onLoad() {
 	createTiles()
-  draw()
+  	draw()
+	inspect()
 }
 
 onLoad()
