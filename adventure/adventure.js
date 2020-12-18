@@ -4,7 +4,7 @@ var ctx = canvas.getContext("2d")
 var boxWidth = 512 / 8
 var boxHeight = 512 / 8
 
-var img_grass = loadImage("pixel-frame-0.png")
+var img_grass = loadImage("pixil-frame-0.png")
 img.onload = onLoad()
 var tiles = new Array(64)
 
