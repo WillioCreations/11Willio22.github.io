@@ -1,26 +1,26 @@
+body {
+	margin:0 0 50px 0;
+}
+
+#title {
+	font:50pt Impact;
+	text-align:center;
+	color:#0F0F0F37;
+	margin: 0 0 10px 0;
+}
+
 #titleDiv {
-	background: #232323;
-	padding: 10px;
-	margin: 10px 0px 10px 0px;
+	background-image: url(adam-chang-IWenq-4JHqo-unsplash-title.jpg);
+}
+
+#inputTable {
+	display:block;
+	margin:auto auto 10px auto;
+	padding:10px 0 0 0;
 }
 
 #canvas {
-	width:640px;
-	height:360px;
+	display:block;
+	margin:auto;
+	padding:0;
 }
-
-h1{
-color:#F1F1F1;
-font:37px Courier New;
-text-align:center;
-margin:17px 0px 0px 0px;
-}
-p {
-color:#F1F1F1;
-margin:0px 0px 17px 0px;
-font:17px Courier New;
-text-align:center;
-
-}
-
-
