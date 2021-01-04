@@ -151,6 +151,7 @@ function drawInputTable() {
 }
 
 function setupDefaultInputValues() {
+	inputTableData = new Array(cellsX * cellsY)
 	for (let y = 1; y < cellsY; y++) {
 		inputTableData[0 + y * cellsX] = days[y - 1]
 	}
