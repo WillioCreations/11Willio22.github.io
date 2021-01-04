@@ -34,6 +34,11 @@ var STYLE_CENTER = 0;
 var STYLE_HORIZONTAL = 1;
 var style = STYLE_CENTER;
 
+var inputTableData = []
+var inputTableSelected = 0
+
+var cellsX = 10
+var cellsY = 8
 
 class DayBox {
 	constructor(x, y, w, h, day, humidity, high, low, dewPoint, front, symbol) {
@@ -127,8 +132,8 @@ function drawInputTable() {
 	ctxIT.fillStyle = "#F1F1F1"
 	ctxIT.fillRect(0,0,WIDTH_IT,HEIGHT_IT)
 	
-	let cellsX = 10
-	let cellsY = 7
+	cellsX = 10
+	cellsY = 8
 	
 	let cellWidth = WIDTH_IT / cellsX
 	let cellHeight = HEIGHT_IT / cellsY
@@ -137,8 +142,17 @@ function drawInputTable() {
 	ctxIT.lineWidth=1
 	for (let y = 0; y < cellsY; y++) {
 		for (let x = 0; x < cellsX; x++) {
-			ctxIT.strokeRect(x * cellWidth,y * cellHeight,cellWidth,cellHeight)
+			if (x > 0 && y > 0) ctxIT.strokeRect(x * cellWidth,y * cellHeight,cellWidth,cellHeight)
+			if (inputTableData[x + y * cellsX] != undefined) {
+				ctxIT.fillText("" + inputTableData[x + y * cellsX], x * cellWidth,y * cellHeight)
+			}
 		}
+	}
+}
+
+function setupDefaultInputValues() {
+	for (let y = 1; y < cellsY; y++) {
+		inputTableData[0 + y * cellsX] = days[y - 1]
 	}
 }
 
@@ -178,6 +192,7 @@ function loadResources() {
 function load() {
 	createDayBoxes()
 	draw()
+	setupDefaultInputValues()
 	drawInputTable()
 }
 
