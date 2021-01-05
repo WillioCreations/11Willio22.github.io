@@ -129,7 +129,7 @@ function createDayBoxes() {
 }
 
 function drawInputTable() {
-	ctxIT.fillStyle = "#F1F1F1"
+	ctxIT.fillStyle = "#FDFDFD"
 	ctxIT.fillRect(0,0,WIDTH_IT,HEIGHT_IT)
 	
 	cellsX = 10
@@ -142,7 +142,13 @@ function drawInputTable() {
 	ctxIT.lineWidth=1
 	for (let y = 0; y < cellsY; y++) {
 		for (let x = 0; x < cellsX; x++) {
-			if (x > 0 && y > 0) ctxIT.strokeRect(x * cellWidth,y * cellHeight,cellWidth,cellHeight)
+			if (x > 0 && y > 0) {
+				if (x + y * cellsX == inputTableSelected) {
+					ctxIY.fillStyle="#F1F1FF"
+					ctxIT.fillRect(x * cellWidth,y * cellHeight,cellWidth,cellHeight)
+				}
+				ctxIT.strokeRect(x * cellWidth,y * cellHeight,cellWidth,cellHeight)
+			}
 			if (inputTableData[x + y * cellsX] != undefined) {
 				ctxIT.fillText("" + inputTableData[x + y * cellsX], x * cellWidth,y * cellHeight)
 			}
@@ -196,6 +202,22 @@ function load() {
 	setupDefaultInputValues()
 	drawInputTable()
 }
+
+
+function onMouseClickIT(event) {
+	let mx = event.offsetX / (WIDTH_IT / cellsX)
+	let my = event.offsetY / (HEIGHT_IT / cellsY)
+	
+	console.log(mx + "," + my)
+	
+	if (mx > 0 && my > 0) {
+			
+		inputTableSelected = mx + my * cellsX
+		
+	}
+}
+
+inputTable.onclick=onMouseClickIT
 
 canvas.width = WIDTH;
 canvas.height = HEIGHT;
