@@ -9,6 +9,17 @@ body {
 	margin: 0 0 10px 0;
 }
 
+#download {
+	display:block;
+	width:90vw;
+	height:50px;
+	font:17pt Courier;
+	text-align:center;
+	background:#232353;
+	color:#F1F1F1;
+	margin:10px auto;
+}
+
 #titleDiv {
 	background-image: url(adam-chang-IWenq-4JHqo-unsplash-title.jpg);
 }

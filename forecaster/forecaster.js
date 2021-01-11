@@ -9,6 +9,7 @@ var HEIGHT_IT = 240
 
 var days = ["MON","TUE","WED","THU","FRI","SAT","SUN"];
 var symbols = []
+var dewPointSymbol = 0
 
 var symbolNames = ["cloudy","rainy","rainy_sunny","sunny","sunny_cloudy","thunderstorm","thunderstorm_sunny"]
 
@@ -37,7 +38,7 @@ var style = STYLE_CENTER;
 var inputTableData = []
 var inputTableSelected = 0
 
-var cellsX = 10
+var cellsX = 7
 var cellsY = 8
 
 class DayBox {
@@ -81,7 +82,17 @@ class DayBox {
 			ctx.fillText(this.low,this.x + this.w / 2.0,this.y + this.h * 0.77)
 			ctx.fillStyle="#f9f9f9"
 			ctx.font = (boxTitleSize * 0.7) + "px Tahoma"
-			ctx.fillText(this.low + "%",this.x + this.w / 2.0,this.y + this.h * 0.87)
+			ctx.fillText(this.humidity + "%",this.x + this.w / 2.0,this.y + this.h * 0.87)
+			if (this.dewPoint != 0) {
+				ctx.fillStyle="#e1e1f7"
+				ctx.font = (boxTitleSize * 0.7) + "px Tahoma"
+				if (this.dewPoint >= 10) 
+					ctx.drawImage(dewPointImage,this.x + this.w * 0.27,this.y + this.h * 0.907,this.w * 0.15, this.w * 0.15)
+				else
+					ctx.drawImage(dewPointImage,this.x + this.w * 0.33,this.y + this.h * 0.907,this.w * 0.15, this.w * 0.15)
+				
+				ctx.fillText(this.dewPoint,this.x + this.w * 0.57,this.y + this.h * 0.95	)
+			}
 		}
 		
 		if (style == STYLE_HORIZONTAL) {
@@ -112,7 +123,7 @@ function createDayBoxes() {
 	boxTitleSize = boxHeight / 10;
 	
 	symbolSize = boxWidth * 0.90;
-	humidities = [0,0,0,0,0,0,0]
+	humidities = [10,40,30,73,50,40,70]
 	highs = [97,30,50,42,70,90,100]
 	lows = [80,57,40,3,57,70,90]
 	dewPoints = [0,0,10,7,0,4,10]
@@ -128,29 +139,45 @@ function createDayBoxes() {
 	}
 }
 
+var download = document.getElementById("download")
+download.addEventListener("click", function(e) {
+	var img    = canvas.toDataURL("image/png");
+    document.write('<img src="'+img+'"/>');
+});
+
 function drawInputTable() {
 	ctxIT.fillStyle = "#FDFDFD"
 	ctxIT.fillRect(0,0,WIDTH_IT,HEIGHT_IT)
-	
-	cellsX = 10
-	cellsY = 8
 	
 	let cellWidth = WIDTH_IT / cellsX
 	let cellHeight = HEIGHT_IT / cellsY
 
 	ctxIT.stroke="#232323E9"
 	ctxIT.lineWidth=1
+	ctxIT.textAlign="center"
+	ctxIT.fillText("" + inputTableSelected, 10, 10)
 	for (let y = 0; y < cellsY; y++) {
 		for (let x = 0; x < cellsX; x++) {
-			if (x > 0 && y > 0) {
+			if (y > 0) {
+				if (x == 0) 
+					ctxIT.font="20px Arial"
+				else
+					ctxIT.font="15px Arial"
 				if (x + y * cellsX == inputTableSelected) {
-					ctxIY.fillStyle="#F1F1FF"
+					ctxIT.fillStyle="#71717F"
 					ctxIT.fillRect(x * cellWidth,y * cellHeight,cellWidth,cellHeight)
 				}
 				ctxIT.strokeRect(x * cellWidth,y * cellHeight,cellWidth,cellHeight)
-			}
-			if (inputTableData[x + y * cellsX] != undefined) {
-				ctxIT.fillText("" + inputTableData[x + y * cellsX], x * cellWidth,y * cellHeight)
+				if (inputTableData[x + y * cellsX] != undefined) {
+					ctxIT.fillStyle="#37373F"
+					ctxIT.fillText("" + inputTableData[x + y * cellsX], x * cellWidth + (cellWidth / 2),y * cellHeight + (cellHeight* 0.7))
+				}
+			} else {
+				ctxIT.font="20px Arial"
+				if (inputTableData[x + y * cellsX] != undefined) {
+					ctxIT.fillStyle="#37373F"
+					ctxIT.fillText("" + inputTableData[x + y * cellsX], x * cellWidth + (cellWidth / 2),y * cellHeight + (cellHeight* 0.7))
+				}
 			}
 		}
 	}
@@ -158,8 +185,28 @@ function drawInputTable() {
 
 function setupDefaultInputValues() {
 	inputTableData = new Array(cellsX * cellsY)
+	let titles = ["Symbol","High","Low","Humidity","DewPoint"]
 	for (let y = 1; y < cellsY; y++) {
 		inputTableData[0 + y * cellsX] = days[y - 1]
+	}
+	for (let x = 1; x < titles.length + 1; x++) {
+		inputTableData[x] = titles[x - 1]
+	}
+}
+
+function interpretInputDataTable() {
+	for (let d = 1; d < 8; d++) {
+		dayBoxes[d - 1].day = inputTableData[d * cellsX]
+		if (inputTableData[1 + d * cellsX] != undefined && symbolNames.includes(inputTableData[1 + d * cellsX]))
+			dayBoxes[d - 1].symbol = symbols[symbolNames.indexOf(inputTableData[1 + d * cellsX])]
+		if (inputTableData[2 + d * cellsX] != undefined) 
+			dayBoxes[d - 1].high = inputTableData[2 + d * cellsX]
+		if (inputTableData[3 + d * cellsX] != undefined) 
+			dayBoxes[d - 1].low = inputTableData[3 + d * cellsX]
+		if (inputTableData[4 + d * cellsX] != undefined) 
+			dayBoxes[d - 1].humidity = inputTableData[4 + d * cellsX]
+		if (inputTableData[5 + d * cellsX] != undefined) 
+			dayBoxes[d - 1].dewPoint = inputTableData[5 + d * cellsX]
 	}
 }
 
@@ -189,6 +236,7 @@ function draw() {
 
 function loadResources() {
 	bgImage = loadImage("adam-chang-IWenq-4JHqo-unsplash.jpg")
+	dewPointImage = loadImage("dewPointLogo.png")
 
 	for (let i = 0; i < symbolNames.length; i++) {
 		let img = loadImage(symbolNames[i] + ".png")
@@ -203,21 +251,64 @@ function load() {
 	drawInputTable()
 }
 
+let cellWidth = WIDTH_IT / cellsX
+let cellHeight = HEIGHT_IT / cellsY
+var alphabet = "abcdefghijklmnopqrstuvwxyz"
+var numbers = "0123456789"
 
 function onMouseClickIT(event) {
-	let mx = event.offsetX / (WIDTH_IT / cellsX)
-	let my = event.offsetY / (HEIGHT_IT / cellsY)
+	let rect = inputTable.getBoundingClientRect()
+	let mx = parseInt((event.clientX - rect.left) / cellWidth)
+	let my = parseInt((event.clientY - rect.top - cellHeight / 2) / cellHeight)
 	
-	console.log(mx + "," + my)
+	console.log((inputTableSelected % cellsX) + "," + (parseInt(inputTableSelected / cellsY)))
 	
-	if (mx > 0 && my > 0) {
+	if (my > 0) {
 			
 		inputTableSelected = mx + my * cellsX
+		drawInputTable()
 		
 	}
 }
 
-inputTable.onclick=onMouseClickIT
+function onKeyDown(event) {
+	event.preventDefault()
+	if (inputTableSelected != -1) {
+		if (event.key == "Backspace") {
+			inputTableData[inputTableSelected] = inputTableData[inputTableSelected].substring(0,inputTableData[inputTableSelected].length - 1)
+		} else if (event.key == "Tab") {
+			inputTableSelected += 1
+			if (inputTableSelected % cellsX == 0) inputTableSelected += 1
+			if (inputTableSelected >= cellsX * cellsY) 		inputTableSelected = cellsX + 1 
+		} else if ((inputTableSelected % cellsX < 2 && alphabet.includes(event.key.toLowerCase())) || numbers.includes(event.key) || event.key == "_") {
+			if (inputTableData[inputTableSelected] == undefined) 
+				inputTableData[inputTableSelected] = event.key
+			else 
+				inputTableData[inputTableSelected] += event.key
+		} else if (event.key == "ArrowUp") {
+			if (parseInt(inputTableSelected / cellsX) != 1)
+				inputTableSelected -= cellsX
+			
+		} else if (event.key == "ArrowRight") {
+			inputTableSelected += 1
+			
+		} else if (event.key == "ArrowDown") {
+			inputTableSelected += cellsX
+		
+		} else if (event.key == "ArrowLeft") {
+			inputTableSelected -= 1
+			
+		}
+		console.log(inputTableSelected)
+		drawInputTable()
+		interpretInputDataTable()
+		draw()
+	}
+}
+
+inputTable.addEventListener("mousedown",onMouseClickIT)
+
+window.addEventListener("keydown",onKeyDown)
 
 canvas.width = WIDTH;
 canvas.height = HEIGHT;
@@ -230,6 +321,7 @@ inputTable.style.width = "852px"
 inputTable.style.height = "240px"
 
 ctx = canvas.getContext("2d")
+ctxIT = inputTable.getContext("2d")
 
 loadResources()
 
