@@ -141,8 +141,10 @@ function createDayBoxes() {
 
 var download = document.getElementById("download")
 download.addEventListener("click", function(e) {
-	var img    = canvas.toDataURL("image/png");
-    document.write('<img src="'+img+'"/>');
+	var link = document.createElement('a');
+  link.download = 'filename.png';
+  link.href = document.getElementById('canvas').toDataURL()
+  link.click();
 });
 
 function drawInputTable() {
