@@ -139,10 +139,11 @@ function createDayBoxes() {
 	}
 }
 
-var download = document.getElementById("download")
+var download = document.getElementById("download") 
 download.addEventListener("click", function(e) {
-	var link = document.createElement('a');
-  link.download = 'filename.png';
+  var date = new Date();
+  var link = document.createElement('a');
+  link.download = "forecaster_" + date.getDate() + '.png';
   link.href = document.getElementById('canvas').toDataURL()
   link.click();
   delete link
