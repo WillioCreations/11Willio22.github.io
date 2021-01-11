@@ -143,8 +143,9 @@ var download = document.getElementById("download")
 download.addEventListener("click", function(e) {
 	var link = document.createElement('a');
   link.download = 'filename.png';
-  link.href = document.getElementById('canvas').toDataURL()
+  //link.href = document.getElementById('canvas').toDataURL()
   link.click();
+  delete link
 });
 
 function drawInputTable() {
