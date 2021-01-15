@@ -687,6 +687,9 @@ Fe(s)
 FeO(s)	
 -272
 
+0
+
+0
  	 
 Fe2O3(s, hematite)	
 -824.2
