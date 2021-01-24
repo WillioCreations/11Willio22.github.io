@@ -1,0 +1,20 @@
+#canvas {
+	display: block;
+	margin: auto;
+	border-radius:10px;
+}
+#in {
+	
+	display: block;
+	margin: 10px auto;
+	width: 70vw;
+	height: 30px;
+	border: none;
+	
+	background: #D1D1F1;
+	padding: 10px;
+	border-radius: 10px;
+	font: 17px Arial;
+	
+	
+}
