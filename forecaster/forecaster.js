@@ -11,7 +11,7 @@ var days = ["MON","TUE","WED","THU","FRI","SAT","SUN"];
 var symbols = []
 var dewPointSymbol = 0
 
-var symbolNames = ["cloudy","rainy","rainy_sunny","sunny","sunny_cloudy","thunderstorm","thunderstorm_sunny"]
+var symbolNames = ["cloudy","rainy","rainy_sunny","sunny","sunny_cloudy","thunderstorm","thunderstorm_sunny","snowy"]
 
 var WIDTH = 1280*2;
 var HEIGHT = 720*2;
