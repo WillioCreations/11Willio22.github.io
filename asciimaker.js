@@ -3,7 +3,7 @@ canvas.width = 1280
 canvas.height = 720
 canvas.style.width = "90vw"
 canvas.style.height = "calc(90vw * 9 / 16)"
-
+//Mr. Koren was here!
 var ctx = canvas.getContext("2d")
 
 document.body.style.backgroundImage = "url(https://upload.wikimedia.org/wikipedia/commons/a/a7/Field-thunderstorm-rainy-meadow_%2824241934691%29.jpg)"
