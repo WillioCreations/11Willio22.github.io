@@ -1,0 +1,27 @@
+body {
+	padding: 0px;
+	margin: 0px;
+}
+
+
+@font-face {
+	font-family: "Clickuper";
+	src: url(Clickuper.ttf);
+}	
+
+#canvas {
+	display:block;
+	margin:auto;
+}
+
+#title {
+	font: 30px Clickuper;
+	color: #F1F1F1;
+}
+
+#header {
+	padding: 10px;
+	width: 100vw;
+	height: 5vh;
+	background-color: #59859e;
+}

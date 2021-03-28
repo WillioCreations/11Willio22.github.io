@@ -244,7 +244,8 @@ class MainState extends State {
       roundRect(x, y, WIDTH * 0.39, HEIGHT * 0.20, 50)
 
 
-      let px = Math.min((WIDTH * 1 / this.questions[this.question].answers[i].length), HEIGHT * 0.1)
+      //let px = Math.min((WIDTH * 1 / this.questions[this.question].answers[i].length), HEIGHT * 0.1)
+	  let px = Math.max(100 - this.questions[this.question].answers[i].length,50)
 
       ctx.fillStyle = "#F1F1F1"
       drawText(this.questions[this.question].answers[i], x + 30, y + px + 10, parseInt(WIDTH * 0.71 / px), px, "Comic Sans MS")
@@ -337,8 +338,9 @@ class PickState extends State {
 }
 
 var alphabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase()
-function parseQuestionData(data) {
-	data = data.replaceAll("\r","").replaceAll("‚Äú","").replaceAll("‚Äù","").replaceAll("‚Äù","").replaceAll("	","").replaceAll("‚Äô","'")
+function parseQuestionData(d) {
+	let data = d.replaceAll("\r","").replaceAll("‚Äú","").replaceAll("‚Äù","").replaceAll("‚Äù","").replaceAll("	","").replaceAll("‚Äô","'")
+	console.log(data.search("‚Äú"))
   let questions = []
 	let lines = data.split("\n")
   let question = 0
@@ -361,17 +363,18 @@ function parseQuestionData(data) {
       if (index < questions.length) {
            
      		questions[index].correct.push(alphabet.indexOf(pointSplit[1]))
-        console.log(index + "," + questions[index].correct)
       }
     }
   }
   questions.push(question)
   numQuestions++
-  return questions
+  return randomizeArray(questions)
 }
 
-function randomizeArray() {
+console.log("e,Äù,Äù ,Äé".replaceAll(",Äù","-").replaceAll(",Äé","-"))
 
+function randomizeArray(arr) {
+	return arr
 }
 
 function read(url, f) {
