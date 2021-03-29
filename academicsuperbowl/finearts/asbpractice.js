@@ -383,6 +383,7 @@ function randomizeArray(arr) {
 		}
 		cp.remove(0);
 	}
+	document.createElement("text").innerHTML = cp
 	return ar
 }
 
