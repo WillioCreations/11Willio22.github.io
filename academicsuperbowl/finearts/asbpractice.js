@@ -316,7 +316,8 @@ class PickState extends State {
     super()
     this.lists = [
       ["Fine Arts (VISUAL)", "https://11willio22.github.io/academicsuperbowl/finearts/visual.txt"],
-      ["Fine Arts (MUSIC)", "https://11willio22.github.io/academicsuperbowl/finearts/music.txt"]
+      ["Fine Arts (MUSIC)", "https://11willio22.github.io/academicsuperbowl/finearts/music.txt"],
+      ["Social Studies","https://11willio22.github.io/academicsuperbowl/finearts/socialstudies.txt"]
     ]
   }
   mouseClick() {
