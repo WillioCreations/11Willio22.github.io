@@ -239,7 +239,8 @@ function draw() {
 }
 
 function loadResources() {
-	bgImage = loadImage("adam-chang-IWenq-4JHqo-unsplash.jpg")
+	//bgImage = loadImage("adam-chang-IWenq-4JHqo-unsplash.jpg")
+	bgImage = loadImage("https://lh6.googleusercontent.com/fukFQj8t2aadJlBPbikQPXHGrfNncjObDdCj3cdJNcB9j2Xu8kaD1Ny7edlZrxvnsV23eCxYd5-xLscwEKBccv5sDq46FM18hQwa9BPCCzFmVWieoWBWzuXG7zzshhaKV8gUd005EyvYHg")
 	dewPointImage = loadImage("dewPointLogo.png")
 
 	for (let i = 0; i < symbolNames.length; i++) {
