@@ -372,10 +372,18 @@ function parseQuestionData(d) {
   return randomizeArray(questions)
 }
 
-console.log("e,Äù,Äù ,Äé".replaceAll(",Äù","-").replaceAll(",Äé","-"))
-
 function randomizeArray(arr) {
-	return arr
+	let ar = []
+	let cp = arr
+	while (cp.length > 0) {
+		if (Math.random() >= 0.5) {
+			ar.push(cp[0])	
+		} else {
+			ar.unshift(cp[0])
+		}
+		cp.remove(0);
+	}
+	return ar
 }
 
 function read(url, f) {
