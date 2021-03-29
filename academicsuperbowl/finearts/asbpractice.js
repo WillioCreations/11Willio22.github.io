@@ -373,18 +373,18 @@ function parseQuestionData(d) {
 }
 
 function randomizeArray(arr) {
-	let ar = []
-	let cp = arr
-	while (cp.length > 0) {
-		if (Math.random() >= 0.5) {
-			ar.push(cp[0])	
-		} else {
-			ar.unshift(cp[0])
-		}
-		cp.remove(0);
-	}
-	document.createElement("text").innerHTML = cp
-	return ar
+// 	let ar = []
+// 	let cp = arr
+// 	while (cp.length > 0) {
+// 		if (Math.random() >= 0.5) {
+// 			ar.push(cp[0])	
+// 		} else {
+// 			ar.unshift(cp[0])
+// 		}
+// 		cp.remove(0);
+// 	}
+// 	document.createElement("text").innerHTML = cp
+	return arr
 }
 
 function read(url, f) {
