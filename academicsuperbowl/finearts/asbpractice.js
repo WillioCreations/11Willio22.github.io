@@ -369,7 +369,7 @@ function parseQuestionData(d) {
   }
   questions.push(question)
   numQuestions++
-  return randomizeArray(questions)
+  return questions
 }
 
 function randomizeArray(arr) {
