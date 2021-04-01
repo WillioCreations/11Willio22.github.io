@@ -341,7 +341,6 @@ class PickState extends State {
 var alphabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase()
 function parseQuestionData(d) {
 	let data = d.replaceAll("\r","").replaceAll("‚Äú","").replaceAll("‚Äù","").replaceAll("‚Äù","").replaceAll("	","").replaceAll("‚Äô","'")
-	console.log(data.search("‚Äú"))
   let questions = []
 	let lines = data.split("\n")
   let question = 0
@@ -369,22 +368,21 @@ function parseQuestionData(d) {
   }
   questions.push(question)
   numQuestions++
-  return questions
+  return randomizeArray(questions)
 }
 
 function randomizeArray(arr) {
-// 	let ar = []
-// 	let cp = arr
-// 	while (cp.length > 0) {
-// 		if (Math.random() >= 0.5) {
-// 			ar.push(cp[0])	
-// 		} else {
-// 			ar.unshift(cp[0])
-// 		}
-// 		cp.remove(0);
-// 	}
-// 	document.createElement("text").innerHTML = cp
-	return arr
+ 	let ar = []
+ 	let cp = arr
+ 	while (cp.length > 0) {
+ 		if (Math.random() >= 0.5) {
+ 			ar.push(cp[0])	
+ 		} else {
+ 			ar.unshift(cp[0])
+ 		}
+ 		cp = cp.slice(1)
+ 	}
+	return ar
 }
 
 function read(url, f) {
@@ -392,6 +390,10 @@ function read(url, f) {
     .then(r => r.text())
     .then(t => f(t))
 }
+
+var debug = true
+drawText("Hi there! How are you? I'm ok. Regretfully making decisions. But I'm hoping this will now work? I'm seeing what the error is....", 100, 100, 40, 100, 100)
+var debug = false
 
 var answerColors = ["#F15757", "#5757F7", "#57F757", "#F7C757"]
 
@@ -430,15 +432,21 @@ function drawText(text, x, y, w, fontSize, font) {
   let split = []
   let i = 0
   while (i < text.length) {
-  	//let j = text.lastIndexOf(" ")
-		let m = Math.min(i + w, text.length)
+    let j = text.substring(i, i + w).lastIndexOf(" ")
+    console.log(j)
+		let m = Math.min(i + w, text.length, (j != -1 ? j : text.length))
     split.push(text.substring(i, m))
-    i += m
+    i += m - i
+    if (i >= w * 2) break
   }
   for (let i = 0; i < split.length; i++) {
     ctx.fillText(split[i], x, y + i * fontSize)
 
   }
+  if (debug) {
+  	for (let i = 0; i < split.length; i++)
+    	console.log(split[i])
+    }
 }
 
 function roundRect(x, y, w, h, r) {
