@@ -391,10 +391,6 @@ function read(url, f) {
     .then(t => f(t))
 }
 
-var debug = true
-drawText("Hi there! How are you? I'm ok. Regretfully making decisions. But I'm hoping this will now work? I'm seeing what the error is....", 100, 100, 40, 100, 100)
-var debug = false
-
 var answerColors = ["#F15757", "#5757F7", "#57F757", "#F7C757"]
 
 //Game Variables
@@ -431,22 +427,23 @@ function drawText(text, x, y, w, fontSize, font) {
   ctx.font = fontSize + "px " + font
   let split = []
   let i = 0
+  let num = 0
   while (i < text.length) {
     let j = text.substring(i, i + w).lastIndexOf(" ")
-    console.log(j)
-		let m = Math.min(i + w, text.length, (j != -1 ? j : text.length))
+		let m = Math.min(i + w, text.length)
+    if (j > 0 && j > w * (3/4)) {
+    	m = Math.min(m, j)
+    }
     split.push(text.substring(i, m))
     i += m - i
+    num++
+    if (num > 5) break
     if (i >= w * 2) break
   }
   for (let i = 0; i < split.length; i++) {
     ctx.fillText(split[i], x, y + i * fontSize)
 
   }
-  if (debug) {
-  	for (let i = 0; i < split.length; i++)
-    	console.log(split[i])
-    }
 }
 
 function roundRect(x, y, w, h, r) {
