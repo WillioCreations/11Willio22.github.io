@@ -432,7 +432,7 @@ function drawText(text, x, y, w, fontSize, font) {
     let j = text.substring(i, i + w).lastIndexOf(" ")
 		let m = Math.min(i + w, text.length)
     if (j > 0 && j > w * (3/4)) {
-    	m = Math.min(m, j)
+    	//m = Math.min(m, j)
     }
     split.push(text.substring(i, m))
     i += m - i
