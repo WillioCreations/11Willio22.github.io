@@ -1,5 +1,6 @@
 body {
-  background-image: url(https://motionarray.imgix.net/preview-103792-JLehQsaXXQ-high_0005.jpg)
+  background-image: url(https://motionarray.imgix.net/preview-103792-JLehQsaXXQ-high_0005.jpg);
+  background-size: fill;
 }
 
 #input {
