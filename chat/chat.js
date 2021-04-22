@@ -33,7 +33,6 @@ function send(url, msg) {
 
 let password = "williscool"
 let username = "Willio"
-send("join", username + "\n" + password)
 var messageHistory = []
 
 function write(data) {
@@ -43,7 +42,7 @@ function write(data) {
 setInterval(update,1000)
 
 function update() {
-	send("retrieve",username)
+	if (activeOnServer) send("retrieve",username)
 }
 
 function processServerData(data) { 
@@ -65,7 +64,7 @@ function processServerData(data) {
     }
   } else if (lines[0] == "Msg") {
   	if (lines[1] == "Accepted") {
-    	activeOnServer = false
+    	activeOnServer = true
       console.log("Successfully Sent Message.")
     } else if (lines[1] == "Denied") {
       console.log("Denied Sending Message by Server. Reason:\n" + lines[2])
@@ -91,7 +90,10 @@ function processUserInput(text) {
 	if (text.startsWith("/")) {
   	if (text.startsWith("/leave")) {
     	send("leave",username)
-    }
+    } else if (text.startsWith("/join")) {
+			send("join", text.split(" ")[1] + "\n" + password)
+      username = text.split(" ")[1]
+  	}
   } else {
   	send("msg",username + "\n" + text)
   }
