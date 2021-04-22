@@ -1,0 +1,18 @@
+#input {
+  display: block;
+  margin: auto;
+  width: 90vw;
+  height: 20;
+  
+  padding: 10px;
+}
+
+#output {
+  display: block;
+  margin: auto;
+  width: 90vw;
+  min-height: 50vh;
+  height: 50vh;
+  
+  padding: 10px;
+}
