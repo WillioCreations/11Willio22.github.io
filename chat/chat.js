@@ -96,5 +96,5 @@ function processUserInput(text) {
   	}
   } else {
   	send("msg",username + "\n" + text)
-  }
+  } 
 }
